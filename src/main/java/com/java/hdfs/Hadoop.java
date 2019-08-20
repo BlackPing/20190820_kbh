@@ -160,7 +160,7 @@ public class Hadoop {
 			int byteRead = 0;
 			while((byteRead = fsis.read()) > 0) { 
 				// 정제 결과를 문자열 변수에 담기
-				sb.append(byteRead);
+				sb.append((char)byteRead);
 			}
 			fsis.close();
 		}
