@@ -18,7 +18,14 @@ public class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
 	@Override
 	protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, IntWritable>.Context context) throws IOException, InterruptedException {
 		// 출력 키에 넣을 문자열 변수
+		String[] values = value.toString().split(",");
 		String strKey = "";
+		
+		if("1987".equals(values[0]) && "0".equals(values[21])) {
+			intValue = new IntWritable(1);
+		} else {
+			intValue = new IntWritable(0);
+		}
 		// 출력 키에 문자열 변수 적용
 		textKey.set(strKey);
 		// 전체 결과 출력하기
