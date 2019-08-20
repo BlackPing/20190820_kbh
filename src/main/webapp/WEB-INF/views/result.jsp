@@ -8,6 +8,6 @@
 	</head>
 	<body>
 		<h2>Result - ${file_name}</h2>
-		<p>${file_name}</p>
+		<p>${result}</p>
 	</body>
 </html>

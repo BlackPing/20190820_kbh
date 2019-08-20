@@ -82,7 +82,7 @@ public class Hadoop {
 			outputPath = new Path(OUTPUT);
 			
 			// 파일시스템 정보 정의
-			localSystem = FileSystem.get(localConf);
+			localSystem = FileSystem.getLocal(localConf);
 			hadoopSystem = FileSystem.get(hadoopConf);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,7 +123,7 @@ public class Hadoop {
 	protected boolean mapReduser() throws ClassNotFoundException, IOException, InterruptedException {
 		System.out.println("Hadoop.mapReduser() >> Start");
 		// 정제 작업 객체 변수
-		Job job = Job.getInstance(hadoopConf, "test");
+		Job job = Job.getInstance(localConf, "test");
 		// 실행 대상 클래스 지정
 		job.setJarByClass(Hadoop.class);
 		// Mapper 객체 지정
