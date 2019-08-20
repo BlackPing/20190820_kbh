@@ -5,7 +5,7 @@
   <artifactId>20190820_kbh</artifactId>
   <packaging>war</packaging>
   <version>1</version>
-  <name>20190820_TEST</name>
+  <name>20190820_kbh</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     
