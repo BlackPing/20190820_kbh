@@ -123,7 +123,7 @@ public class Hadoop {
 	protected boolean mapReduser() throws ClassNotFoundException, IOException, InterruptedException {
 		System.out.println("Hadoop.mapReduser() >> Start");
 		// 정제 작업 객체 변수
-		Job job = Job.getInstance(hadoopConf, "test");
+		Job job = Job.getInstance(new Configuration(), "test");
 		// 실행 대상 클래스 지정
 		job.setJarByClass(Hadoop.class);
 		// Mapper 객체 지정
