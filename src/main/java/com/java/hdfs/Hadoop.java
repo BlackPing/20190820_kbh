@@ -22,8 +22,8 @@ public class Hadoop {
 	protected Configuration hadoopConf = null;
 	protected Configuration localConf = null;
 	// hadoop 접속 주소 (hadoop server ip 수정 할것) <<<<<<<<<<<<<<<<<<
-	protected final String URL = "hdfs://ip:9000";
-	protected final String LOCAL = "/root/data/";
+	protected final String URL = "hdfs://server.kr:9000";
+	protected final String LOCAL = "D:\\IDE\\workspace\\20190820_kbh\\data/";
 	// hadoop 정제 대상 경로 / 처리 결과 저장 경로 및 파일
 	protected final String INPUT = "/input/";
 	protected final String OUTPUT = "/output";
@@ -53,6 +53,14 @@ public class Hadoop {
 			 * 2) 정제 요청 : mapReduser()
 			 * 3) 성공 시 결과 받기 : resultData()
 			 **************************************************/
+			try {
+				fileCopy(fileName);
+				mapReduser();
+				resultMap.put("result", resultData());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		resultMap.put("status", status);
 		System.out.println("Hadoop.run() >> End");
