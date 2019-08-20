@@ -25,7 +25,7 @@ public class Hadoop {
 	protected final String URL = "hdfs://192.168.3.53:9000";
 	protected final String LOCAL = "/root/data/";
 	// hadoop 정제 대상 경로 / 처리 결과 저장 경로 및 파일
-	protected final String INPUT = "/input/";
+	protected final String INPUT = "/input/1987.csv";
 	protected final String OUTPUT = "/output";
 	protected final String TARGET = "/part-r-00000";
 	// hadoop 정제 대상 경로 및 처리 경로 객체
@@ -78,7 +78,7 @@ public class Hadoop {
 			hadoopConf.set("fs.defaultFS", URL);
 			
 			// Hadoop 정제 시 사용 할 경로 객체 정의
-			inputPath = new Path(INPUT + fileName);
+			inputPath = new Path(INPUT);
 			outputPath = new Path(OUTPUT);
 			
 			// 파일시스템 정보 정의
