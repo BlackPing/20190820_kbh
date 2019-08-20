@@ -54,8 +54,10 @@ public class Hadoop {
 			 * 3) 성공 시 결과 받기 : resultData()
 			 **************************************************/
 			try {
-				fileCopy(fileName);
-				mapReduser();
+				boolean res = fileCopy(fileName);
+				if(res) {
+					mapReduser();
+				}
 				resultMap.put("result", resultData());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -107,7 +109,7 @@ public class Hadoop {
 			// 원본 데이터 한줄씩 읽어 오기
 			while ((byteRead = fsis.read()) > 0) {
 				// 대상 복사 파일에 넣기
-				fsos.write(byteRead);					
+				fsos.write(byteRead);
 			}
 			fsis.close();
 			fsos.close();
