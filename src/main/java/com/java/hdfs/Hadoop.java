@@ -25,7 +25,7 @@ public class Hadoop {
 	protected final String URL = "hdfs://192.168.3.53:9000";
 	protected final String LOCAL = "/root/data/";
 	// hadoop 정제 대상 경로 / 처리 결과 저장 경로 및 파일
-	protected final String INPUT = "/input/1987.csv";
+	protected final String INPUT = "/input/";
 	protected final String OUTPUT = "/output";
 	protected final String TARGET = "/part-r-00000";
 	// hadoop 정제 대상 경로 및 처리 경로 객체
@@ -53,14 +53,36 @@ public class Hadoop {
 			 * 2) 정제 요청 : mapReduser()
 			 * 3) 성공 시 결과 받기 : resultData()
 			 **************************************************/
-			try {
-				fileCopy(fileName);
-				mapReduser();
-				resultMap.put("result", resultData());
-			} catch (Exception e) {
-				e.printStackTrace();
+			if(fileCopy(fileName)) {
+				try {
+					if(mapReduser()) {
+						try {
+							status = 2;
+							String getdata = resultData();
+							resultMap.put("result", getdata);
+						} catch (IOException e) {
+							e.printStackTrace();
+							System.out.println("getdata 입출력 에러");
+						}
+					};
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+					status = 1;
+					System.out.println("MapReduce 클래스 에러");
+				} catch (IOException e) {
+					e.printStackTrace();
+					status = 1;
+					System.out.println("MapReduce 입출력 에러");
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					status = 1;
+					System.out.println("MapReduce 중단 에러");
+				} catch (Exception e) {
+					e.printStackTrace();
+					status = 1;
+					System.out.println("MapReduce 알수없는 에러");
+				}
 			}
-			
 		}
 		resultMap.put("status", status);
 		System.out.println("Hadoop.run() >> End");
@@ -78,7 +100,7 @@ public class Hadoop {
 			hadoopConf.set("fs.defaultFS", URL);
 			
 			// Hadoop 정제 시 사용 할 경로 객체 정의
-			inputPath = new Path(INPUT);
+			inputPath = new Path(INPUT + fileName);
 			outputPath = new Path(OUTPUT);
 			
 			// 파일시스템 정보 정의
