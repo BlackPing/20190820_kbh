@@ -54,10 +54,8 @@ public class Hadoop {
 			 * 3) 성공 시 결과 받기 : resultData()
 			 **************************************************/
 			try {
-				boolean res = fileCopy(fileName);
-				if(res) {
-					mapReduser();
-				}
+				fileCopy(fileName);
+				mapReduser();
 				resultMap.put("result", resultData());
 			} catch (Exception e) {
 				e.printStackTrace();
