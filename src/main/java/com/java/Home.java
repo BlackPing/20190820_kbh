@@ -36,7 +36,7 @@ public class Home extends HttpServlet {
 			Hadoop hadoop = new Hadoop();
 			HashMap<String, Object> result = hadoop.run(file_name);
 			req.setAttribute("file_name", file_name);
-			req.setAttribute("file_name", result.get("result").toString());
+			req.setAttribute("result", result.get("result").toString());
 			RequestDispatcher rd = req.getRequestDispatcher(viewPath("result"));
 			rd.forward(req, res);
 		}
