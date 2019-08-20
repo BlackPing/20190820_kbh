@@ -82,7 +82,7 @@ public class Hadoop {
 			outputPath = new Path(OUTPUT);
 			
 			// 파일시스템 정보 정의
-			localSystem = FileSystem.getLocal(localConf);
+			localSystem = FileSystem.get(localConf);
 			hadoopSystem = FileSystem.get(hadoopConf);
 		} catch (Exception e) {
 			e.printStackTrace();
